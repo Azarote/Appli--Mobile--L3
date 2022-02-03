@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">PartageServices</string>
+    <string name="boutton1" />
+    <string name="servicebutton">MES  SERVICES</string>
+    <string name="demandebutton">MES DEMANDES</string>
+    <string name="searchbutton">CHERCHER SERVICE</string>
+    <string name="proposebutton">PROPOSER SERVICE</string>
+    <string name="maintext">Bienvenue sur notre site de partage de services à la personne Vous pouvez ici proposer des services aux particuliers et surtout trouver la réponse à tous vos besoins.</string>
+    <string name="uniteLocation">Unité de location:</string>
+    <string name="coutUnite">Coût unité:</string>
+    <string name="buttonCreateService">Créer Service</string>
+    <string name="ButtonAnnuler">Annuler</string>
+    <string name="hintTitleService">Ici le titre du service</string>
+    <string name="HintResumeService">Ici le résumé du service</string>
+    <string name="proposer_service_titre">Proposer service</string>
+    <string name="snackbar_confirmation_creation_service">Enregistrement d\'un nouveau service</string>
+    <string name="snack_boutton_annulation">Annuler</string>
+</resources>
