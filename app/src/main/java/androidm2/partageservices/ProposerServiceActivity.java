@@ -19,8 +19,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class ProposerServiceActivity extends AppCompatActivity {
-    private PartageServiceApplication partageServiceApplication;
     EditText editTexteTitle, editTextResume, editTextCoutUniteLocation;
+    private PartageServiceApplication partageServiceApplication;
     private Spinner spi_unite_location;
 
     private boolean demanderAnnulation = false;
@@ -33,7 +33,7 @@ public class ProposerServiceActivity extends AppCompatActivity {
         setTitle(R.string.proposer_service_titre);
 
         //Récuperation des informations metier
-        partageServiceApplication = (PartageServiceApplication)getApplication();
+        partageServiceApplication = (PartageServiceApplication) getApplication();
 
         //recuperation des references aux champs de saisie et au spinner
 
@@ -71,10 +71,8 @@ public class ProposerServiceActivity extends AppCompatActivity {
 
                 //Affichage d'un snackbar qui précise que la création ve etre faite
                 Snackbar snackbar = Snackbar.make(findViewById(R.id.coordinator),
-                        R.string.snackbar_confirmation_creation_service,Snackbar.LENGTH_LONG);
-                snackbar.setAction(R.string.snack_boutton_annulation, view1 -> {
-                    demanderAnnulation = true;
-                });
+                        R.string.snackbar_confirmation_creation_service, Snackbar.LENGTH_LONG);
+                snackbar.setAction(R.string.snack_boutton_annulation, view1 -> demanderAnnulation = true);
                 snackbar.show();
 
                 //Mise en place d'un timer
@@ -83,29 +81,23 @@ public class ProposerServiceActivity extends AppCompatActivity {
 
                     @Override
                     public void run() {
-                        if (demanderAnnulation) return;
+                        if (demanderAnnulation) {
+                            snackbar.dismiss();
+                            finish();
+                            demanderAnnulation = false;
+                            return;
+                        }
                         //Ajout au contexte (objet metier)
                         partageServiceApplication.getContexte().ajouterService(service);
                         finish();
                     }
-                }, 3*1000);
+                }, 3000);
 
-            }else {return;}
+            }
         });
 
         Button annuler = findViewById(R.id.buttonCancelService);
-        annuler.setOnClickListener(view -> {
-            finish();
-        });
-
-
-
-
-
-
-
-
-
+        annuler.setOnClickListener(view -> finish());
 
 
     }
