@@ -30,6 +30,7 @@ public class AdapterListeService extends RecyclerView.Adapter<ViewHolderCelluleS
 
         holder.textViewTitreService.setText(service.getNom());
         holder.textViewResumeService.setText(service.getResume());
+        holder.textViewPrixService.setText(service.getCout() + " € "+ "par "+ service.getUniteLocation());
     }
 
     @Override
