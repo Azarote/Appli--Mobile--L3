@@ -15,4 +15,5 @@
     <string name="proposer_service_titre">Proposer service</string>
     <string name="snackbar_confirmation_creation_service">Enregistrement d\'un nouveau service</string>
     <string name="snack_boutton_annulation">Annuler</string>
+    <string name="bouton_reserver">Réserver le service</string>
 </resources>
