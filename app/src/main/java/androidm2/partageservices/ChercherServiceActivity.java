@@ -1,10 +1,10 @@
 package androidm2.partageservices;
 
+import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.os.Bundle;
 
 public class ChercherServiceActivity extends AppCompatActivity {
     private PartageServiceApplication partageServiceApplication;
@@ -13,6 +13,7 @@ public class ChercherServiceActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chercher_service);
+        setTitle(R.string.chercher_service_titre);
 
         PartageServiceApplication partageServiceApplication = (PartageServiceApplication) getApplication();
 

@@ -16,4 +16,8 @@
     <string name="snackbar_confirmation_creation_service">Enregistrement d\'un nouveau service</string>
     <string name="snack_boutton_annulation">Annuler</string>
     <string name="bouton_reserver">Réserver le service</string>
+    <string name="chercher_service_titre">Recherche de service</string>
+    <string name="reserver_service_titre">Réservation</string>
+    <string name="boutn_demander_reservation">demander réservation</string>
+    <string name="bouton_annuler_reservation">Annuler</string>
 </resources>
