@@ -1,8 +1,10 @@
 package androidm2.partageservices;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import org.sakdavong.partagedeservices.Metier.Service;
@@ -31,6 +33,12 @@ public class AdapterListeService extends RecyclerView.Adapter<ViewHolderCelluleS
         holder.textViewTitreService.setText(service.getNom());
         holder.textViewResumeService.setText(service.getResume());
         holder.textViewPrixService.setText(service.getCout() + " € "+ "par "+ service.getUniteLocation());
+
+        holder.buttonReserver.setOnClickListener(v -> {
+            Intent intent = new Intent(v.getContext(), ReservationActivity.class);
+            intent.putExtra("service", service);
+            v.getContext().startActivity(intent);
+        });
     }
 
     @Override

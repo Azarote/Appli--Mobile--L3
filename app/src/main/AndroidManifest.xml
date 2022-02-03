@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="androidm2.partageservices">
+
     <application
         android:name=".PartageServiceApplication"
         android:allowBackup="true"
@@ -10,6 +10,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PartageServices">
+        <activity
+            android:name=".ReservationActivity"
+            android:exported="false" />
         <activity
             android:name=".ProposerServiceActivity"
             android:exported="true" />
@@ -26,4 +29,5 @@
             </intent-filter>
         </activity>
     </application>
+
 </manifest>
