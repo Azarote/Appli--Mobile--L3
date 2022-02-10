@@ -17,7 +17,6 @@ import org.sakdavong.partagedeservices.Metier.Service;
 import org.sakdavong.partagedeservices.Metier.Utilisateur;
 
 public class ReservationActivity extends AppCompatActivity {
-    private PartageServiceApplication partageServiceApplication;
     private boolean demanderAnnulation = false;
 
     @Override
@@ -91,7 +90,7 @@ public class ReservationActivity extends AppCompatActivity {
                 Reservation reservation = new Reservation();
                 reservation.setDateTime(date_reserv.getText().toString());
                 reservation.setQuantite(Integer.parseInt(quantite_reservee.getText().toString()));
-                Utilisateur utilisateurConnecte = partageServiceApplication.getContexte().getUtilisateur();
+                Utilisateur utilisateurConnecte = app.getContexte().getUtilisateur();
                 reservation.setUid(uuid);
                 reservation.setUtilisateurUid(utilisateurConnecte.getUid());
 
