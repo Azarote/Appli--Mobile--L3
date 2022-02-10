@@ -31,5 +31,22 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intentRecherche);
             }
         });
+      /*  Button mesServicesBouton = findViewById(R.id.serviceButton);
+        mesServicesBouton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentMesServices = new Intent(MainActivity.this, MesServicesActivity.class);
+                startActivity(intentMesServices);
+            }
+        }*/
+        Button mesDemandeBouton = findViewById(R.id.demandeButton);
+        mesDemandeBouton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentMesDemandes = new Intent(MainActivity.this, DemandesActivity.class);
+                startActivity(intentMesDemandes);
+            }
+        });
+        
     }
 }
