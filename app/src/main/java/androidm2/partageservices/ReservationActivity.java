@@ -20,7 +20,7 @@ public class ReservationActivity extends AppCompatActivity {
         String uuid = intent.getStringExtra("service");
         PartageServiceApplication app = (PartageServiceApplication) getApplication();
 
-       Service s = app.getContexte().findServiveByUid(uuid);
+        Service s = app.getContexte().findServiveByUid(uuid);
 
         TextView nom_service = findViewById(R.id.service_include_reser).findViewById(R.id.nom_service);
         TextView resume_service = findViewById(R.id.service_include_reser).findViewById(R.id.resume_service_constraint_layout);
@@ -29,5 +29,16 @@ public class ReservationActivity extends AppCompatActivity {
         nom_service.setText(s.getNom());
         resume_service.setText(s.getResume());
         prix_service.setText(String.valueOf(s.getCout()) + "€" + " par " + s.getUniteLocation());
+
+        Button button_reserver = findViewById(R.id.button_demander_reservation);
+        Button button_annuler = findViewById(R.id.button_annuler_reservation);
+
+        button_reserver.setOnClickListener(v -> {
+                    // Intent intent1 = new Intent(ReservationActivity.this, ReservationConfirmationActivity.class);
+                    //intent1.putExtra("service", uuid);
+                    //startActivity(intent1);
+                }
+        );
+        button_annuler.setOnClickListener(v -> finish());
     }
 }
