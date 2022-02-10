@@ -32,6 +32,10 @@ public class ReservationActivity extends AppCompatActivity {
         TextView resume_service = findViewById(R.id.service_include_reser).findViewById(R.id.resume_service_constraint_layout);
         TextView prix_service = findViewById(R.id.service_include_reser).findViewById(R.id.prix_par_unite);
 
+        nom_service.setText(s.getNom());
+        resume_service.setText(s.getResume());
+        prix_service.setText(String.valueOf(s.getCout()) + "€" + " par " + s.getUniteLocation());
+
         //Ajoute le coût de réservation
         TextView quantite_reservee = findViewById(R.id.quantite_reservee);
         quantite_reservee.addTextChangedListener(new TextWatcher() {
@@ -59,7 +63,6 @@ public class ReservationActivity extends AppCompatActivity {
             }
         });
 
-
         TextView date_reserv = findViewById(R.id.date_reservation);
         date_reserv.setFocusable(false);
         date_reserv.setOnClickListener(v -> {
@@ -73,11 +76,7 @@ public class ReservationActivity extends AppCompatActivity {
             }, true);
         });
 
-
-        nom_service.setText(s.getNom());
-        resume_service.setText(s.getResume());
-        prix_service.setText(String.valueOf(s.getCout()) + "€" + " par " + s.getUniteLocation());
-
+        //Déclaration bouton annuler et reserver
         Button button_reserver = findViewById(R.id.button_demander_reservation);
         Button button_annuler = findViewById(R.id.button_annuler_reservation);
 
@@ -87,6 +86,7 @@ public class ReservationActivity extends AppCompatActivity {
                     //startActivity(intent1);
                 }
         );
+        //Action du bouton annuler
         button_annuler.setOnClickListener(v -> finish());
     }
 }
