@@ -65,16 +65,13 @@ public class ReservationActivity extends AppCompatActivity {
 
         TextView date_reserv = findViewById(R.id.date_reservation);
         date_reserv.setFocusable(false);
-        date_reserv.setOnClickListener(v -> {
+        date_reserv.setOnClickListener(v -> DatePickerHelper.showDatePicker(this, new DatePickerHelper.OnDateSelectedListener() {
+            @Override
+            public void onDateSelected(String date) {
+                date_reserv.setText(date);
 
-            DatePickerHelper.showDatePicker(this, new DatePickerHelper.OnDateSelectedListener() {
-                @Override
-                public void onDateSelected(String date) {
-                    date_reserv.setText(date);
-
-                }
-            }, true);
-        });
+            }
+        }, true));
 
         //Déclaration bouton annuler et reserver
         Button button_reserver = findViewById(R.id.button_demander_reservation);
