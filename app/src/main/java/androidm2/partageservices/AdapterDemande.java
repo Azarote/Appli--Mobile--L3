@@ -1,6 +1,5 @@
 package androidm2.partageservices;
 
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,14 +7,15 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.sakdavong.partagedeservices.Metier.Service;
+import org.sakdavong.partagedeservices.Metier.Contexte;
+import org.sakdavong.partagedeservices.Metier.Reservation;
 
 import java.util.List;
 
-public class AdapterDemande extends RecyclerView.Adapter<ViewHolderCelluleService> {
-    private List<Service> listeServicesReserves;
+public class AdapterDemande extends RecyclerView.Adapter<ViewHolderDemandes> {
+    private List<Reservation> listeServicesReserves;
 
-    public AdapterDemande(List<Service> listeServicesReserves) {
+    public AdapterDemande(List<Reservation> listeServicesReserves) {
         this.listeServicesReserves = listeServicesReserves;
     }
 
@@ -29,16 +29,16 @@ public class AdapterDemande extends RecyclerView.Adapter<ViewHolderCelluleServic
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolderDemandes holder, int position) {
-        Service service = listeServicesReserves.get(position);
-
-        holder.textViewTitreServiceR.setText(service.getNom());
-        holder.textViewResumeServiceR.setText(service.getResume());
-        holder.textCoutServiceR.setText("22");
-        holder.dateR.setText(service);
+        Reservation reservation = listeServicesReserves.get(position);
+        Contexte contexte = new Contexte();
+        holder.textViewTitreServiceR.setText(contexte.findServiveByUid(reservation.getServiceUid()).getNom());
+        holder.textViewResumeServiceR.setText(contexte.findServiveByUid(reservation.getServiceUid()).getResume());
+        holder.textCoutServiceR.setText((int) (reservation.getQuantite()* contexte.findServiveByUid(reservation.getServiceUid()).getCout()));
+        holder.dateR.setText(reservation.getDateTime());
     }
 
     @Override
     public int getItemCount() {
-        return listeServices.size();
+        return listeServicesReserves.size();
     }
 }
