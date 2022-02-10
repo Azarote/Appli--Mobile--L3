@@ -15,7 +15,7 @@ public class ReservationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reservation);
         setTitle(R.string.reserver_service_titre);
-        findViewById(R.id.service_include_reser).findViewById(R.id.button_reserver).setVisibility(Button.INVISIBLE);
+        findViewById(R.id.service_include_reser).findViewById(R.id.button_reserver).setVisibility(Button.GONE);
         Intent intent = getIntent();
         String uuid = intent.getStringExtra("service");
         PartageServiceApplication app = (PartageServiceApplication) getApplication();
