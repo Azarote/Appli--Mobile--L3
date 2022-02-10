@@ -16,8 +16,8 @@ public class ViewHolderCelluleService extends RecyclerView.ViewHolder {
     public ViewHolderCelluleService(@NonNull View itemView) {
         super(itemView);
         textViewTitreService = itemView.findViewById(R.id.nom_service);
-        textViewResumeService = itemView.findViewById(R.id.resume_service_constraint_layout);
-        textViewPrixService = itemView.findViewById(R.id.prix_par_unite);
+        textViewResumeService = itemView.findViewById(R.id.resume_service);
+        textViewPrixService = itemView.findViewById(R.id.prix_service);
         buttonReserver = itemView.findViewById(R.id.button_reserver);
     }
 }

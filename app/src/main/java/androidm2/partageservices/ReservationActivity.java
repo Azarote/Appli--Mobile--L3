@@ -23,6 +23,7 @@ import java.util.TimerTask;
 
 public class ReservationActivity extends AppCompatActivity {
     private boolean demanderAnnulation = false;
+    private Reservation reservation = new Reservation();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +39,8 @@ public class ReservationActivity extends AppCompatActivity {
 
         //Récupère les infos de la cardview
         TextView nom_service = findViewById(R.id.service_include_reser).findViewById(R.id.nom_service);
-        TextView resume_service = findViewById(R.id.service_include_reser).findViewById(R.id.resume_service_constraint_layout);
-        TextView prix_service = findViewById(R.id.service_include_reser).findViewById(R.id.prix_par_unite);
+        TextView resume_service = findViewById(R.id.service_include_reser).findViewById(R.id.resume_service);
+        TextView prix_service = findViewById(R.id.service_include_reser).findViewById(R.id.prix_service);
 
         nom_service.setText(s.getNom());
         resume_service.setText(s.getResume());
@@ -88,11 +89,11 @@ public class ReservationActivity extends AppCompatActivity {
 
         button_reserver.setOnClickListener(v -> {
                     if (date_reserv.getText().length() != 0 && quantite_reservee.getText().length() != 0) {
-                        Reservation reservation = new Reservation();
+
                         reservation.setDateTime(date_reserv.getText().toString());
                         reservation.setQuantite(Integer.parseInt(quantite_reservee.getText().toString()));
                         Utilisateur utilisateurConnecte = app.getContexte().getUtilisateur();
-                        reservation.setUid(uuid);
+                        reservation.setServiceUid(uuid);
                         reservation.setUtilisateurUid(utilisateurConnecte.getUid());
 
                         //Cacher le clavier virtuel
@@ -117,6 +118,7 @@ public class ReservationActivity extends AppCompatActivity {
                                     return;
                                 }
                                 //Ajout au contexte (objet metier)
+
                                 app.getContexte().ajouterReservation(reservation);
                                 finish();
                             }

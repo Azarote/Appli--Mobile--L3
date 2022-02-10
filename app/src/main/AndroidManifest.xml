@@ -11,6 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PartageServices">
         <activity
+            android:name=".DemandesActivity"
+            android:exported="false" />
+        <activity
             android:name=".ReservationActivity"
             android:exported="false" />
         <activity
