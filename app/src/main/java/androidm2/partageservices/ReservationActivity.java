@@ -1,9 +1,11 @@
 package androidm2.partageservices;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -15,6 +17,9 @@ import org.sakdavong.partagedeservices.Metier.DatePickerHelper;
 import org.sakdavong.partagedeservices.Metier.Reservation;
 import org.sakdavong.partagedeservices.Metier.Service;
 import org.sakdavong.partagedeservices.Metier.Utilisateur;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class ReservationActivity extends AppCompatActivity {
     private boolean demanderAnnulation = false;
@@ -94,12 +99,34 @@ public class ReservationActivity extends AppCompatActivity {
                 reservation.setUid(uuid);
                 reservation.setUtilisateurUid(utilisateurConnecte.getUid());
 
+                //Cacher le clavier virtuel
+                InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+
                 //Affichage d'un snackbar qui précise que la création ve etre faite
                 Snackbar snackbar = Snackbar.make(findViewById(R.id.coordinator_reservation),
                         R.string.snackbar_confirmation_reserver_service, Snackbar.LENGTH_LONG);
                 snackbar.setAction(R.string.snack_boutton_annulation, view1 -> demanderAnnulation = true);
                 snackbar.show();
+                //Mise en place d'un timer
+                Timer timer = new Timer();
+                timer.schedule(new TimerTask() {
+
+                    @Override
+                    public void run() {
+                        if (demanderAnnulation) {
+                            snackbar.dismiss();
+                            finish();
+                            demanderAnnulation = false;
+                            return;
+                        }
+                        //Ajout au contexte (objet metier)
+                        app.getContexte().ajouterReservation(reservation);
+                        finish();
+                    }
+                }, 3000);
             }else {return;}
+
         }
         );
         //Action du bouton annuler
