@@ -60,7 +60,7 @@
 
     <TextView
         android:id="@+id/cout_reserv_2"
-        android:layout_width="141dp"
+        android:layout_width="wrap_content"
         android:layout_height="31dp"
         android:layout_marginTop="56dp"
         android:text="Coût de la réservation"
