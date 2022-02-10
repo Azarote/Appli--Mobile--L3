@@ -2,7 +2,6 @@ package androidm2.partageservices;
 
 import android.content.Intent;
 import android.os.Bundle;
-
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.Button;
@@ -10,10 +9,16 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import org.sakdavong.partagedeservices.Metier.DatePickerHelper;
+import org.sakdavong.partagedeservices.Metier.Reservation;
 import org.sakdavong.partagedeservices.Metier.Service;
+import org.sakdavong.partagedeservices.Metier.Utilisateur;
 
 public class ReservationActivity extends AppCompatActivity {
+    private PartageServiceApplication partageServiceApplication;
+    private boolean demanderAnnulation = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,12 +81,27 @@ public class ReservationActivity extends AppCompatActivity {
         //Déclaration bouton annuler et reserver
         Button button_reserver = findViewById(R.id.button_demander_reservation);
         Button button_annuler = findViewById(R.id.button_annuler_reservation);
+//        RecyclerView recyclerView = findViewById(R.id.recycler_chercher_service);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+//        AdapterListeService adapter = new AdapterListeService(partageServiceApplication.getContexte().getServiceList());
+//        recyclerView.setAdapter(adapter);
 
         button_reserver.setOnClickListener(v -> {
-                    // Intent intent1 = new Intent(ReservationActivity.this, ReservationConfirmationActivity.class);
-                    //intent1.putExtra("service", uuid);
-                    //startActivity(intent1);
-                }
+            if (date_reserv.getText().length() != 0 && quantite_reservee.getText().length() != 0) {
+                Reservation reservation = new Reservation();
+                reservation.setDateTime(date_reserv.getText().toString());
+                reservation.setQuantite(Integer.parseInt(quantite_reservee.getText().toString()));
+                Utilisateur utilisateurConnecte = partageServiceApplication.getContexte().getUtilisateur();
+                reservation.setUid(uuid);
+                reservation.setUtilisateurUid(utilisateurConnecte.getUid());
+
+                //Affichage d'un snackbar qui précise que la création ve etre faite
+                Snackbar snackbar = Snackbar.make(findViewById(R.id.coordinator_reservation),
+                        R.string.snackbar_confirmation_reserver_service, Snackbar.LENGTH_LONG);
+                snackbar.setAction(R.string.snack_boutton_annulation, view1 -> demanderAnnulation = true);
+                snackbar.show();
+            }else {return;}
+        }
         );
         //Action du bouton annuler
         button_annuler.setOnClickListener(v -> finish());
