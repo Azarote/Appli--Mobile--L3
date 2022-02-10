@@ -3,6 +3,8 @@ package androidm2.partageservices;
 import android.content.Intent;
 import android.os.Bundle;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.widget.Button;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,8 +30,32 @@ public class ReservationActivity extends AppCompatActivity {
         TextView prix_service = findViewById(R.id.service_include_reser).findViewById(R.id.prix_par_unite);
 
         //Ajoute le coût de réservation
-        TextView reservation_price = findViewById(R.id.cout_reserv_2);
-        reservation_price.setText("Coût de la réservation: "+ String.valueOf(s.getCout() + " €"));
+        TextView quantite_reservee = findViewById(R.id.quantite_reservee);
+        quantite_reservee.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // TODO Auto-generated method stub
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count,
+                                          int after) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable edit) {
+                TextView reservation_price = findViewById(R.id.cout_reserv_2);
+                if (!quantite_reservee.getText().toString().equals("")) {
+                reservation_price.setText("Coût de la réservation: "+ String.valueOf(s.getCout()*Float.parseFloat(quantite_reservee.getText().toString()) + " €"));
+                }else
+                reservation_price.setText("Coût de la réservation:");
+
+            }
+        });
+
 
         nom_service.setText(s.getNom());
         resume_service.setText(s.getResume());
