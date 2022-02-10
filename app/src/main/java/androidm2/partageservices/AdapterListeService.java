@@ -36,7 +36,7 @@ public class AdapterListeService extends RecyclerView.Adapter<ViewHolderCelluleS
 
         holder.buttonReserver.setOnClickListener(v -> {
             Intent intent = new Intent(v.getContext(), ReservationActivity.class);
-            intent.putExtra("service", service);
+            intent.putExtra("service", service.getUid());
             v.getContext().startActivity(intent);
         });
     }
