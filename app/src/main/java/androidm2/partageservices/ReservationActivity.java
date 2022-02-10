@@ -22,9 +22,14 @@ public class ReservationActivity extends AppCompatActivity {
 
         Service s = app.getContexte().findServiveByUid(uuid);
 
+        //Récupère les infos de la cardview
         TextView nom_service = findViewById(R.id.service_include_reser).findViewById(R.id.nom_service);
         TextView resume_service = findViewById(R.id.service_include_reser).findViewById(R.id.resume_service_constraint_layout);
         TextView prix_service = findViewById(R.id.service_include_reser).findViewById(R.id.prix_par_unite);
+
+        //Ajoute le coût de réservation
+        TextView reservation_price = findViewById(R.id.cout_reserv_2);
+        reservation_price.setText("Coût de la réservation: "+ String.valueOf(s.getCout() + " €"));
 
         nom_service.setText(s.getNom());
         resume_service.setText(s.getResume());
