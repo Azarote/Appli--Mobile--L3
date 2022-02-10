@@ -85,49 +85,47 @@ public class ReservationActivity extends AppCompatActivity {
         //Déclaration bouton annuler et reserver
         Button button_reserver = findViewById(R.id.button_demander_reservation);
         Button button_annuler = findViewById(R.id.button_annuler_reservation);
-//        RecyclerView recyclerView = findViewById(R.id.recycler_chercher_service);
-//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-//        AdapterListeService adapter = new AdapterListeService(partageServiceApplication.getContexte().getServiceList());
-//        recyclerView.setAdapter(adapter);
 
         button_reserver.setOnClickListener(v -> {
-            if (date_reserv.getText().length() != 0 && quantite_reservee.getText().length() != 0) {
-                Reservation reservation = new Reservation();
-                reservation.setDateTime(date_reserv.getText().toString());
-                reservation.setQuantite(Integer.parseInt(quantite_reservee.getText().toString()));
-                Utilisateur utilisateurConnecte = app.getContexte().getUtilisateur();
-                reservation.setUid(uuid);
-                reservation.setUtilisateurUid(utilisateurConnecte.getUid());
+                    if (date_reserv.getText().length() != 0 && quantite_reservee.getText().length() != 0) {
+                        Reservation reservation = new Reservation();
+                        reservation.setDateTime(date_reserv.getText().toString());
+                        reservation.setQuantite(Integer.parseInt(quantite_reservee.getText().toString()));
+                        Utilisateur utilisateurConnecte = app.getContexte().getUtilisateur();
+                        reservation.setUid(uuid);
+                        reservation.setUtilisateurUid(utilisateurConnecte.getUid());
 
-                //Cacher le clavier virtuel
-                InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                        //Cacher le clavier virtuel
+                        InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
+                        imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
 
-                //Affichage d'un snackbar qui précise que la création ve etre faite
-                Snackbar snackbar = Snackbar.make(findViewById(R.id.coordinator_reservation),
-                        R.string.snackbar_confirmation_reserver_service, Snackbar.LENGTH_LONG);
-                snackbar.setAction(R.string.snack_boutton_annulation, view1 -> demanderAnnulation = true);
-                snackbar.show();
-                //Mise en place d'un timer
-                Timer timer = new Timer();
-                timer.schedule(new TimerTask() {
+                        //Affichage d'un snackbar qui précise que la création ve etre faite
+                        Snackbar snackbar = Snackbar.make(findViewById(R.id.coordinator_reservation),
+                                R.string.snackbar_confirmation_reserver_service, Snackbar.LENGTH_LONG);
+                        snackbar.setAction(R.string.snack_boutton_annulation, view1 -> demanderAnnulation = true);
+                        snackbar.show();
+                        //Mise en place d'un timer
+                        Timer timer = new Timer();
+                        timer.schedule(new TimerTask() {
 
-                    @Override
-                    public void run() {
-                        if (demanderAnnulation) {
-                            snackbar.dismiss();
-                            finish();
-                            demanderAnnulation = false;
-                            return;
-                        }
-                        //Ajout au contexte (objet metier)
-                        app.getContexte().ajouterReservation(reservation);
-                        finish();
+                            @Override
+                            public void run() {
+                                if (demanderAnnulation) {
+                                    snackbar.dismiss();
+                                    finish();
+                                    demanderAnnulation = false;
+                                    return;
+                                }
+                                //Ajout au contexte (objet metier)
+                                app.getContexte().ajouterReservation(reservation);
+                                finish();
+                            }
+                        }, 3000);
+                    } else {
+                        return;
                     }
-                }, 3000);
-            }else {return;}
 
-        }
+                }
         );
         //Action du bouton annuler
         button_annuler.setOnClickListener(v -> finish());
