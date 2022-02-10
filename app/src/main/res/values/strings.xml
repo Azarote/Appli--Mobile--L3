@@ -20,4 +20,5 @@
     <string name="reserver_service_titre">Réservation</string>
     <string name="boutn_demander_reservation">demander réservation</string>
     <string name="bouton_annuler_reservation">Annuler</string>
+    <string name="label_date_reserv">Date de la réservation</string>
 </resources>
