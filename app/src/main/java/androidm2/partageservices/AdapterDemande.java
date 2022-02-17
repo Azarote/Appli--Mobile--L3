@@ -14,10 +14,11 @@ import java.util.List;
 
 public class AdapterDemande extends RecyclerView.Adapter<ViewHolderDemandes> {
     private List<Reservation> listeServicesReserves;
-    Contexte contexte;
+    private Contexte contexte;
 
     public AdapterDemande(Contexte contexte) {
         this.listeServicesReserves = contexte.getListeMesReservations();
+        this.contexte = contexte;
     }
 
 
@@ -34,7 +35,7 @@ public class AdapterDemande extends RecyclerView.Adapter<ViewHolderDemandes> {
 
         holder.textViewTitreServiceR.setText(contexte.findServiveByUid(reservation.getServiceUid()).getNom());
         holder.textViewResumeServiceR.setText(contexte.findServiveByUid(reservation.getServiceUid()).getResume());
-        holder.textCoutServiceR.setText((int) (reservation.getQuantite()* contexte.findServiveByUid(reservation.getServiceUid()).getCout()));
+        holder.textCoutServiceR.setText(Float.toString(reservation.getQuantite()* contexte.findServiveByUid(reservation.getServiceUid()).getCout()) + " €");
         holder.dateR.setText(reservation.getDateTime());
     }
 
