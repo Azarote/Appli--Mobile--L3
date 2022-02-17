@@ -18,7 +18,9 @@ public class DemandesActivity extends AppCompatActivity {
 
         RecyclerView recyclerView = findViewById(R.id.recycler_mes_demandes);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        AdapterDemande adapter = new AdapterDemande(partageServiceApplication.getContexte().getListeMesReservations());
+
+        System.out.println("DemandeActivity: "+partageServiceApplication.getContexte().getListeMesReservations());
+        AdapterDemande adapter = new AdapterDemande(partageServiceApplication.getContexte());
         recyclerView.setAdapter(adapter);
     }
 }

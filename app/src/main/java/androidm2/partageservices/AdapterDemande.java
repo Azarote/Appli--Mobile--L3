@@ -14,9 +14,10 @@ import java.util.List;
 
 public class AdapterDemande extends RecyclerView.Adapter<ViewHolderDemandes> {
     private List<Reservation> listeServicesReserves;
+    Contexte contexte;
 
-    public AdapterDemande(List<Reservation> listeServicesReserves) {
-        this.listeServicesReserves = listeServicesReserves;
+    public AdapterDemande(Contexte contexte) {
+        this.listeServicesReserves = contexte.getListeMesReservations();
     }
 
 
@@ -30,7 +31,7 @@ public class AdapterDemande extends RecyclerView.Adapter<ViewHolderDemandes> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolderDemandes holder, int position) {
         Reservation reservation = listeServicesReserves.get(position);
-        Contexte contexte = new Contexte();
+
         holder.textViewTitreServiceR.setText(contexte.findServiveByUid(reservation.getServiceUid()).getNom());
         holder.textViewResumeServiceR.setText(contexte.findServiveByUid(reservation.getServiceUid()).getResume());
         holder.textCoutServiceR.setText((int) (reservation.getQuantite()* contexte.findServiveByUid(reservation.getServiceUid()).getCout()));
